@@ -15,7 +15,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(wheels);
+        this.wheels = cloneWheels(wheels);
         this.engine = (engine == null ? null: engine.clone());
     }
 
@@ -43,13 +43,20 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return (List<Wheel>) new ArrayList<>(wheels);
+        return cloneWheels(wheels);
     }
 
     public Engine getEngine() {
         return engine == null ? null : engine.clone();
     }
 
+    private List<Wheel> cloneWheels(List<Wheel> wheels) {
+        List<Wheel> newWheels = new ArrayList<>();
+        for (Wheel wheel: wheels) {
+            newWheels.add(wheel.clone());
+        }
+        return newWheels;
+    }
     @Override
     public boolean equals(Object o) {
         if (o == this) {

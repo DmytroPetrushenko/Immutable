@@ -25,7 +25,7 @@ public class Wheel implements Cloneable{
             return false;
         }
         Wheel wheel = (Wheel) o;
-        return Objects.equals(radius, wheel.radius);
+        return radius == wheel.radius;
     }
 
     @Override
